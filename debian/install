@@ -1,0 +1,16 @@
+./sleepi4ctl /usr/sbin/
+./sleepi4alarm /usr/sbin/
+./85-sleepi4-utils.rules /usr/lib/udev/rules.d/
+./timeoutpid.sh /usr/lib/sleepi4-utils/
+./systohc.sh /usr/lib/sleepi4-utils/
+./hctosys.sh /usr/lib/sleepi4-utils/
+./config.py /usr/lib/sleepi4-utils/
+./sleepi4-systohc.service /usr/lib/systemd/system/
+./sleepi4-hctosys.service /usr/lib/systemd/system/
+./sleepi4-start.service /usr/lib/systemd/system/
+./sleepi4-stop.service /usr/lib/systemd/system/
+./sleepi4-halt.service /usr/lib/systemd/system/
+./sleepi4-restart.service /usr/lib/systemd/system/
+./sleepi4-heartbeat.service /usr/lib/systemd/system/
+./sleepi4 /etc/default/
+./sleepi4_util.py /usr/share/sleepi4-utils/

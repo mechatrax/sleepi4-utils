@@ -1,0 +1,14 @@
+[Unit]
+Description=sleepi4-utils postprocess
+DefaultDependencies=no
+After=sleepi4-start.service
+Before=shutdown.target sleepi4-systohc.service
+Conflicts=sleepi4-monitor.service sleepi4-heartbeat.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/sleepi4-utils/config.py halt
+TimeoutSec=30s
+
+[Install]
+WantedBy=halt.target

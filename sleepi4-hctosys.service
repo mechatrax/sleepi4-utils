@@ -1,0 +1,11 @@
+[Unit]
+Description=Initialize system clock from sleepi4
+DefaultDependencies=no
+Before=time-sync.target sysinit.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/default/sleepi4
+ExecStart=/usr/lib/sleepi4-utils/hctosys.sh
+TimeoutSec=30s
+KillSignal=SIGKILL

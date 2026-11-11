@@ -1,0 +1,22 @@
+#!/bin/sh
+# prerm script for sleepi4-utils
+#
+# see: dh_installdeb(1)
+
+set -e
+
+case "$1" in
+    upgrade|purge|remove|failed-upgrade|abort-install|abort-upgrade|disappear)
+        sleepi4ctl set watchdog-timeout 0 >/dev/null || true
+        sleepi4ctl set watchdog-boot-timeout 0 >/dev/null || true
+    ;;
+
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

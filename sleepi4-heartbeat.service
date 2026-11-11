@@ -1,0 +1,15 @@
+[Unit]
+Description=sleepi4 software heartbeat
+DefaultDependencies=no
+After=sysinit.target
+
+[Service]
+Type=simple
+Nice=19
+OOMScoreAdjust=1000
+EnvironmentFile=/etc/default/sleepi4
+ExecStart=/usr/bin/gpioset -t0 -c gpiochip0 -p100 -t100,100,100,600 ${HEARTBEAT_PIN}=1
+ExecStopPost=/usr/bin/gpioset -t0 -c gpiochip0 ${HEARTBEAT_PIN}=0
+
+[Install]
+WantedBy=sysinit.target

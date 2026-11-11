@@ -1,0 +1,14 @@
+[Unit]
+Description=sleepi4-utils preprocess
+DefaultDependencies=no
+BindsTo=dev-i2c\x2d1.device
+After=sysinit.target dev-i2c\x2d1.device
+Before=shutdown.target
+ConditionPathExists=/etc/default/sleepi4
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/sleepi4-utils/config.py start
+TimeoutSec=30s
+RemainAfterExit=yes
+

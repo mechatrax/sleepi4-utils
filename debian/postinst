@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+. /etc/default/sleepi4 || true
+
+if [ -d /run/systemd/system ]; then
+       systemctl --system daemon-reload >/dev/null || true
+       udevadm control --reload-rules || true
+fi
+
+#DEBHELPER#
+
+if [ "$1" = "configure" ] && [ -n "$2" ]; then
+       deb-systemd-invoke start sleepi4-heartbeat.service >/dev/null || true
+       sleepi4ctl set watchdog-timeout $HEARTBEAT_TIMEOUT >/dev/null || true
+       sleepi4ctl set watchdog-boot-timeout $BOOT_TIMEOUT >/dev/null || true
+else
+       sleepi4ctl set watchdog-timeout 0 >/dev/null || true
+fi
+
+exit 0

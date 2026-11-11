@@ -1,0 +1,16 @@
+[Unit]
+Description=Synchronize system clock to sleepi4
+DefaultDependencies=no
+After=sleepi4-hctosys.service
+Before=shutdown.target
+Conflicts=sleepi4-monitor.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/default/sleepi4
+ExecStart=/usr/lib/sleepi4-utils/systohc.sh
+TimeoutSec=30s
+KillSignal=SIGKILL
+
+[Install]
+WantedBy=shutdown.target
